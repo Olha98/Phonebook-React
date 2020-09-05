@@ -1,0 +1,36 @@
+.title{
+  opacity: 1;
+  }
+
+
+  .title-appear{
+  transform: translateX(-100%);
+  }
+
+  .title-appear-active{
+    transform: translateX(0);
+    transition: all 1000ms linear;
+    }
+    
+  
+    .alert{
+background: red;
+    }
+  
+  .alert-enter-active{
+    opacity: 1;
+  transform: translateX(0);
+  transition: all 500ms linear;
+  }
+  
+  
+  .alert-exit{
+    opacity: 1;
+  }
+  
+  
+  .alert-exit-active{
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: all 500ms linear;
+  }

@@ -1,0 +1,29 @@
+/* Animation */
+.enter {
+  transform: translateX(100%);
+}
+.enterActive {
+  transform: translateX(0);
+  transition: all 250ms linear;
+}
+.exit {
+  transform: translateX(0);
+}
+.exitActive {
+  transform: translateX(100%);
+  transition: all 250ms linear;
+}
+
+.alert {
+  width: 300px;
+  height: 50px;
+  background-color: rgb(224, 66, 66);
+  border-radius: 6px;
+  padding: 10px 42px;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.4);
+}
+.message {
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  width: 300px;
+}
