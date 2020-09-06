@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom';
 import routes from '../../routes'
 import Nav from 'react-bootstrap/Nav'
@@ -7,10 +7,14 @@ import css from './Header.module.css'
 import UserMenu from '../UserMenu/UserMenu';
 import { connect } from 'react-redux';
 import authSelectors from '../../Redux/Selections/authSelector'
+import authOperations from '../../Redux/Operations/authOperations'
 
 
-const Header = ({isAuthenticated}) => {
-  console.log(isAuthenticated)
+const Header = ({ isAuthenticated }) => {
+
+
+
+
   return (
     <header>
       <nav>
@@ -21,8 +25,8 @@ const Header = ({isAuthenticated}) => {
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="mr-auto">
                 <Nav.Link>
-                  <NavLink to={routes.home}  className={css.navlink_Header}>Home</NavLink>
-                  </Nav.Link>
+                  <NavLink to={routes.home} className={css.navlink_Header}>Home</NavLink>
+                </Nav.Link>
                 <Nav.Link>
                   <NavLink to={routes.register}>Register</NavLink>
                 </Nav.Link>
@@ -34,11 +38,11 @@ const Header = ({isAuthenticated}) => {
                 </Nav.Link>
               </Nav>
               <Nav>
-                {isAuthenticated ? <Nav.Link href="#deets"><UserMenu/></Nav.Link>
-                : <Nav.Link>
-                Contacts
+                {isAuthenticated ? <Nav.Link><UserMenu /></Nav.Link>
+                  : <Nav.Link>
+                    Contacts
               </Nav.Link>}
-               
+
               </Nav>
             </Navbar.Collapse>
           </Navbar>
@@ -51,7 +55,11 @@ const Header = ({isAuthenticated}) => {
 
 const mapStateToProps = state => ({
   isAuthenticated: authSelectors.isAuthenticated(state),
+
 });
 
+
+
 export default connect(mapStateToProps)(Header)
+
 

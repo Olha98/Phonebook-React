@@ -9,8 +9,21 @@ import ContactsPage from './Pages/ContactsPage'
 import NotFoundPage from './Pages/NotFoundPage'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container'
+import { connect } from 'react-redux'
+import authOperations from './Redux/Operations/authOperations'
 
 class App extends Component {
+
+  // useEffect(() => {
+  //   console.log("gthtpfuhepbkjcm")
+  //   isCurrentUser()
+   
+  // }, [])
+  componentDidMount(){
+    console.log("componentDidMount")
+      this.props.isCurrentUser()
+  }
+  
   render() {
     return (
       <Container fluid="md">
@@ -29,4 +42,4 @@ class App extends Component {
   }
 };
 
-export default App
+export default connect(null, { isCurrentUser: authOperations.currentUser })(App)
