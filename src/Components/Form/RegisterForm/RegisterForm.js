@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 
 const initialState = {
-  userName: '',
+  name: '',
   email: '',
   password: ''
 }
@@ -25,29 +25,24 @@ class RegisterForm extends Component {
 
 
   clickButton = () => {
-  
-    // const errorContacts = this.props.contacts
+
     this.props.onAddNewUser({ ...this.state });
     this.setState({ ...initialState })
-    // if (errorContacts) {
-    //   console.log(errorContacts.length, "errorContacts.lenght")
-    //   const error = errorContacts.map(contact => contact)
-    //   error.find(errorItem => errorItem.name === this.state.name && errorItem.number === this.state.number)
-    //     ? this.alertShow()
-    //     : this.props.onAddNewUser({userName, email, password });
-    // }
-    // this.setState({ ...initialState })
+
   }
 
   render() {
-    const { userName, email, password } = this.state
+    const { name, email, password } = this.state
 
     return (
       <div>
         <div className={css.loginBox}>
           <h2>Register</h2>
           <form>
-
+          <div className={css.userBox}>
+              <label>User Name</label>
+              <input type="text" name="name" value={name} onChange={this.handleChange} />
+            </div>
             <div className={css.userBox}>
               <label>Email</label>
               <input type="email" name="email" value={email} onChange={this.handleChange} />

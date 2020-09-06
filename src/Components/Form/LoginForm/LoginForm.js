@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import css from './LoginForm.module.css'
+import authOperation from '../../../Redux/Operations/authOperations'
+import { connect } from 'react-redux'
 
 
 
 const initialState = {
-  userName: '',
+  email: '',
   password: ''
 }
 
-export default class LoginForm extends Component {
+class LoginForm extends Component {
   state = {
     ...initialState
   }
@@ -21,27 +23,15 @@ export default class LoginForm extends Component {
     this.setState({ [name]: value })
   }
 
-  //  clickButton = (e) => {
-  //   console.log(e.target, "clickButtom")
-  // }
+  clickButton = () => {
 
-  // handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const { name, number } = this.state;
-  //   const errorContacts = this.props.contacts
+    this.props.onLoginUser({ ...this.state });
+    this.setState({ ...initialState })
 
-  //   if (errorContacts) {
-  //     console.log(errorContacts.length, "errorContacts.lenght")
-  //     const error = errorContacts.map(contact => contact)
-  //     error.find(errorItem => errorItem.name === this.state.name && errorItem.number === this.state.number)
-  //       ? this.alertShow()
-  //       : this.props.onAddContacts({ name, number });
-  //   }
-  //   this.setState({ ...initialState })
-  // }
+  }
 
   render() {
-    const { userName, email, password } = this.state
+    const {email, password } = this.state
     console.log(this.state)
     return (
       <div>
@@ -50,8 +40,8 @@ export default class LoginForm extends Component {
           <form>
 
             <div className={css.userBox}>
-              <label>User Name</label>
-              <input type="text" name="userName" required="" value={userName} onChange={this.handleChange} />
+              <label>Email</label>
+              <input type="email" name="email" required="" value={email} onChange={this.handleChange} />
 
             </div>
 
@@ -72,4 +62,6 @@ export default class LoginForm extends Component {
       </div>
     )
   }
-}
+};
+
+export default connect(null, { onLoginUser: authOperation.loginUser })(LoginForm)

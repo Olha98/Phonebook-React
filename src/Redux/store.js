@@ -1,16 +1,25 @@
 import contactReducer from '../Redux/Reducers/Reducers'
 import userReduser from '../Redux/Reducers/authReduser'
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
+
+const persistConfig = {
+  key: 'auth',
+  storage: storage,
+  whitelist: ['token'] // only navigation will be persisted
+};
 
 
-const defaultMiddleware = getDefaultMiddleware();
+ const defaultMiddleware = getDefaultMiddleware();
 
-const store = configureStore({
+ export const store = configureStore({
   reducer: {
     state: contactReducer,
-    users: userReduser,
+    auth: persistReducer(persistConfig, userReduser),
+    
   },
   middleware: [...defaultMiddleware],
 });
 
-export default store
+export const persistor = persistStore(store);

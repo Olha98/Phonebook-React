@@ -4,10 +4,13 @@ import routes from '../../routes'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import css from './Header.module.css'
+import UserMenu from '../UserMenu/UserMenu';
+import { connect } from 'react-redux';
+import authSelectors from '../../Redux/Selections/authSelector'
 
 
-
-const Header = () => {
+const Header = ({isAuthenticated}) => {
+  console.log(isAuthenticated)
   return (
     <header>
       <nav>
@@ -31,9 +34,11 @@ const Header = () => {
                 </Nav.Link>
               </Nav>
               <Nav>
-                <Nav.Link href="#deets">More deets</Nav.Link>
-                <Nav.Link eventKey={2} href="logining">
-                  LOGIN</Nav.Link>
+                {isAuthenticated ? <Nav.Link href="#deets"><UserMenu/></Nav.Link>
+                : <Nav.Link>
+                Contacts
+              </Nav.Link>}
+               
               </Nav>
             </Navbar.Collapse>
           </Navbar>
@@ -43,5 +48,10 @@ const Header = () => {
     </header>
   )
 };
-export default Header
+
+const mapStateToProps = state => ({
+  isAuthenticated: authSelectors.isAuthenticated(state),
+});
+
+export default connect(mapStateToProps)(Header)
 
