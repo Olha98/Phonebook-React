@@ -14,3 +14,5 @@ const users = createReducer([], {
   // [actions.logoutSuccess]: onlogoutUser,
   // [actions.getCurrentUserSuccess]: onCurrentUser,
 })
+
+export default users
