@@ -3,18 +3,35 @@ html {
   height: 100%;
 }
 
+* {
+  margin: 0px;
+  padding: 0px;
+
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   margin:0;
   padding:0;
   font-family: sans-serif;
-  background: linear-gradient(#141e30, #243b55);
+  background: linear-gradient(-45deg, #021c4d, #16151f, #303536, #010924);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
 }
 
-* {
-  margin: 0px;
-  padding: 0px;
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
+
 
 
 
