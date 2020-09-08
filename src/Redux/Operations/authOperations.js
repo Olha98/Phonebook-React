@@ -4,7 +4,7 @@ import axios from 'axios'
 axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
 
 
-const token = {
+export const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
@@ -39,6 +39,7 @@ const loginUser = user => async dispatch => {
 const logOut = () => async dispatch => {
   console.log("Запуск после рендра logOut")
   dispatch(actions.logoutRequest());
+
   try {
     await axios.post('/users/logout')
     console.log("try logout")
@@ -53,9 +54,10 @@ const logOut = () => async dispatch => {
 const currentUser = () => async (dispatch, getState) => {
   console.log("Запуск после рендра currentUser")
   dispatch(actions.getCurrentUserRequest());
+
   // const { auth: { tokenOfUser } } = getState();
   //   console.log("tokenOfUser", tokenOfUser)
-  
+
   // if(!tokenOfUser){
   //   return
   // }
@@ -64,15 +66,16 @@ const currentUser = () => async (dispatch, getState) => {
   const {
     auth: { token: persistedToken },
   } = getState();
-  console.log(persistedToken, "persistedToken")
+  console.log(persistedToken, "persistedToken900776554")
   if (!persistedToken) {
     return;
   }
+  token.set(persistedToken)
 
 
   try {
-    const result = await axios.post('/users/current')
-    console.log(result,"result")
+    const result = await axios.get('/users/current')
+    console.log(result, "result")
     dispatch(actions.getCurrentUserSuccess(result));
   } catch (error) {
     dispatch(actions.getCurrentUserError(error))

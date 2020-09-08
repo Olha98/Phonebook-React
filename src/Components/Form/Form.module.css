@@ -6,9 +6,7 @@
   transition: all 1500ms linear;
 }
 
-.formContainer{
-margin-left: 50px;
-}
+
 
 .formContainer h2{
 color: rgb(41, 6, 168);
@@ -18,3 +16,4 @@ margin: 10px 0px;
 .boxAlert{
 width: 300px;
 }
+

@@ -1,14 +1,17 @@
 import actions from '../Actions/Actions'
 import axios from 'axios'
 
-const addContactOperation = contact => dispatch => {
 
+axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
+
+const addContactOperation = description => dispatch => {
+console.log(description, "description")
   dispatch(actions.addContactRequest())
-  axios.post('https://redux-async.firebaseio.com/contacts.json', contact)
+  axios.post('/contacts', {...description})
     .then(responce => {
 
       console.log(responce, "responce")
-      dispatch(actions.addContactSuccess({ ...contact, id: responce.data.name }))
+      dispatch(actions.addContactSuccess({ ...description, id: responce.data.name }))
     }).catch(error => dispatch(actions.addContactError(error)))
 }
 
@@ -16,7 +19,7 @@ const addContactOperation = contact => dispatch => {
 const removeContactOperation  = id => dispatch => {
   dispatch(actions.removeContactRequest());
   axios
-    .delete(`https://redux-async.firebaseio.com/contacts/${id}.json`)
+    .delete(`contacts/${id}`)
 .then(() => {
   console.log(id,"SuccessID")
   dispatch(actions.removeContactSuccess(id))})
@@ -31,7 +34,7 @@ const getContactOperation = () => async dispatch => {
 
   dispatch(actions.getContactsRequest())
   try {
-    const result = await axios.get('https://redux-async.firebaseio.com/contacts.json');
+    const result = await axios.get('/contacts');
     console.log(result, "RESULT")
     const keys = Object.keys(result.data);
     const data = keys.reduce((acc, key) => {

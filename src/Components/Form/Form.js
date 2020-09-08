@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import style from './Form.module.css'
 import './Form.css'
-import ListPeople from './ListPeople/ListPeople';
+// import ListPeople from './ListPeople/ListPeople';
 import FillterForm from './FillterForm/FillterForm';
 import ContactForm from './ContactForm/ContactForm';
 import { CSSTransition } from 'react-transition-group'
@@ -40,7 +40,6 @@ class FormContacts extends Component {
     const errorContacts = this.props.contacts
 
     if (errorContacts) {
-      console.log(errorContacts.length, "errorContacts.lenght")
       const error = errorContacts.map(contact => contact)
       error.find(errorItem => errorItem.name === this.state.name && errorItem.number === this.state.number)
         ? this.alertShow()
@@ -58,7 +57,7 @@ class FormContacts extends Component {
     const { name, number } = this.state;
     const { alert } = this.props
     return (
-      <>
+      <div className={style.boxForm}>
         {alert && <CSSTransition
           classNames={style}
           in={true}
@@ -69,14 +68,11 @@ class FormContacts extends Component {
           <AlertModal />
         </CSSTransition>}
         <Form onSubmit={this.handleSubmit} className={style.formContainer}>
-          <CSSTransition in={true} appear={true} classNames="title" timeout={1000} unmountOnExit>
-            <h2>Phonebook</h2>
-          </CSSTransition>
+         
           <ContactForm handleChange={this.handleChange} name={name} number={number} />
-          <FillterForm />
-          <ListPeople />
         </Form>
-      </>
+        <FillterForm />
+      </div>
     );
   }
 }

@@ -11,6 +11,7 @@ const initialState = {
 }
 
 class LoginForm extends Component {
+  
   state = {
     ...initialState
   }
@@ -20,6 +21,7 @@ class LoginForm extends Component {
     console.log(e.target, "e")
     const name = e.target.name;
     const value = e.target.value;
+
     this.setState({ [name]: value })
   }
 
@@ -33,6 +35,7 @@ class LoginForm extends Component {
   render() {
     const {email, password } = this.state
     console.log(this.state)
+
     return (
       <div>
         <div className={css.loginBox}>

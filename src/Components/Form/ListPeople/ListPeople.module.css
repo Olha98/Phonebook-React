@@ -1,25 +1,59 @@
 .list{
 margin-top: 10px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+
 }
 
-.list button {
+
+.list  button {
+  text-decoration: none;
   outline: none;
-  margin: 10px 10px;
-  padding: 5px;
-  border-radius: 6px;
-  width: 5%;
-  background-image: linear-gradient(45deg, #6ab1d7 0%, #33d9de 50%, #002878 100%);
-  background-position: 100% 0;
-  background-size: 200% 200%;
-  color: #fff;
-  box-shadow: 0 16px 32px 0 rgba(0,40,120,.35);
-  transition: .5s;
+  display: inline-block;
+  padding:  10px 20px;
+  margin: 10px 20px;
+  position: relative;
+  color: white;
+  font-size:10px ;
+  border: 1px solid rgba(255,255,255,.4);
+  background: none;
+  font-weight: 300;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
-.list button:hover {
-  box-shadow: 0 0 0 0 rgba(0,40,120,0);
-  background-position: 0 0;
+.list  button:before,
+.list  button:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  box-sizing: border-box;
 }
-
+.list  button:before {
+  bottom: 0;
+  left: 0;
+  border-left: 1px solid #03e9f4;
+  border-top: 1px solid #03e9f4;
+  transition: 0s ease opacity .8s, .2s ease width .4s, .2s ease height .6s;
+}
+.list  button:after {
+  top: 0;
+  right: 0;
+  border-right: 1px solid #03e9f4;
+  border-bottom: 1px solid #03e9f4;
+  transition: 0s ease opacity .4s, .2s ease width , .2s ease height .2s;
+}
+.list  button:hover:before,
+.list  button:hover:after{
+  height: 100%;
+  width: 100%;
+  opacity: 1;
+}
+.list  button:hover:before {transition: 0s ease opacity 0s, .2s ease height, .2s ease width .2s;}
+.list button:hover:after {transition: 0s ease opacity .4s, .2s ease height .4s , .2s ease width .6s;}
   
 /* Animation */
 .enter {

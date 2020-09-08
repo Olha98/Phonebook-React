@@ -9,6 +9,7 @@ import selections from '../../../Redux/Selections/selections'
 const ListPeople = ({ contacts}) => {
 console.log(contacts, "contacts")
   return (
+    <div className={style.listPeopleBox}>
     <TransitionGroup className={style.list}>
 
       {contacts.map(contact =>
@@ -21,6 +22,7 @@ console.log(contacts, "contacts")
 
       )}
     </TransitionGroup>
+    </div>
   )
 }
 

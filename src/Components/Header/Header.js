@@ -1,60 +1,61 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { NavLink } from 'react-router-dom';
-import routes from '../../routes'
+
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import css from './Header.module.css'
 import UserMenu from '../UserMenu/UserMenu';
 import { connect } from 'react-redux';
 import authSelectors from '../../Redux/Selections/authSelector'
-import authOperations from '../../Redux/Operations/authOperations'
 
 
-const Header = ({ isAuthenticated }) => {
+const Header = ({ isAuth }) => {
 
 
 
 
   return (
-    <header>
-      <nav>
+    <header className={css.header}>
+     
         <ul>
-          <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+          <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" >
             <Navbar.Brand href="#home">Phonebook</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="mr-auto">
                 <Nav.Link>
-                  <NavLink to={routes.home} className={css.navlink_Header}>Home</NavLink>
+                  <NavLink to="/" className={css.navlink_Header} >Home</NavLink>
                 </Nav.Link>
+                {isAuth && 
                 <Nav.Link>
-                  <NavLink to={routes.register}>Register</NavLink>
-                </Nav.Link>
-                <Nav.Link>
-                  <NavLink to={routes.login}>Login</NavLink>
-                </Nav.Link>
-                <Nav.Link>
-                  <NavLink to={routes.contacts}>Contacts</NavLink>
-                </Nav.Link>
+                  <NavLink to="/contacts" className={css.navlink_Header} >Contacts</NavLink>
+                </Nav.Link>}
+
+
               </Nav>
               <Nav>
-                {isAuthenticated ? <Nav.Link><UserMenu /></Nav.Link>
-                  : <Nav.Link>
-                    Contacts
-              </Nav.Link>}
+                {isAuth ? <Nav.Link><UserMenu /></Nav.Link>
+                  : <>
+                    <Nav.Link>
+                      <NavLink to="/register" className={css.navlink_Header} >Register</NavLink>
+                    </Nav.Link>
+                    <Nav.Link>
+                      <NavLink to="/login" className={css.navlink_Header} >Login</NavLink>
+                    </Nav.Link>
+                  </>}
 
               </Nav>
             </Navbar.Collapse>
           </Navbar>
 
         </ul>
-      </nav>
+      
     </header>
   )
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: authSelectors.isAuthenticated(state),
+  isAuth: authSelectors.isAuthenticated(state),
 
 });
 

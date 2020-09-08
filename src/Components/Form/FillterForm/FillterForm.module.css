@@ -2,3 +2,46 @@
 margin-bottom: 10px;
 }
 
+.boxContact{
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+   }
+
+
+.boxFilter label {
+  width: auto;
+text-align: center;
+margin-right: 30px;
+}
+
+.boxInput {
+  width: 580px;
+  height: 42px;
+  padding-left: 15px;
+  border-radius: 42px;
+  border: 2px solid #324b4e;
+  background: #F9F0DA;
+  outline: none;
+  position: relative;
+  transition: .3s linear;
+}
+
+.boxInput input:focus {
+  width: 300px;
+}
+
+.boxSubmit {
+  width: 42px;
+  height: 42px;
+  background: none;
+  border: none;
+  position: absolute;
+  top: -2px;
+  right: 0;
+}
+.boxSubmit:before{
+  content: "\f002";
+  font-family: FontAwesome;
+  color: #324b4e;
+}
